@@ -3,7 +3,7 @@ Music Streaming backend
 
 Streamify Music Streaming Service/Database
 
-Overview
+# Overview
 Streamify, aims to provide a streamlined database-driven platform that allows administrators to manage essential components of a music streaming service.
 Streamify would serve as an internal tool for managing artists, albums, songs, and user-generated playlists, ensuring that music libraries are organized efficiently. The system will allow administrators to:
 - Add and manage new songs, albums, and artists.
