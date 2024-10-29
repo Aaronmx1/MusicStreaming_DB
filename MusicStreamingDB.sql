@@ -21,10 +21,9 @@ DROP TABLE IF EXISTS Subscriptions;
 -- Handles M:N relationship between Playlists and Songs
 CREATE TABLE AddedSongs (
     addedSongsId int(11) NOT NULL AUTO_INCREMENT,
-    playlistId int(11) unique NOT NULL,
-    songId int(11) unique NOT NULL,
+    playlistId int(11) NOT NULL,
+    songId int(11) NOT NULL,
     PRIMARY KEY (addedSongsId),
-    -- Constraints maintain foreign key relationships
     CONSTRAINT FOREIGN KEY (playlistId) REFERENCES Playlists (playlistId)
         -- ON UPDATE CASCADE updated value and updates table
         ON UPDATE CASCADE
@@ -38,8 +37,8 @@ CREATE TABLE AddedSongs (
 -- Handles M:N relationship between Artists and Songs
 CREATE TABLE Collaborations (
     collaborationId int(11) NOT NULL AUTO_INCREMENT,
-    artistId int(11) NOT NULL,
     songId int(11) NOT NULL,
+    artistId int(11) NOT NULL,
     primary key (collaborationId),
     CONSTRAINT FOREIGN KEY (artistId) REFERENCES Artists(artistId)
         ON UPDATE CASCADE
@@ -55,7 +54,6 @@ CREATE TABLE Artists (
     fName varchar(50) NOT NULL,
     lName varchar(50) NOT NULL,
     email varchar(50) NOT NULL,
-    totalStreams int(11) NOT NULL,
     PRIMARY KEY (artistId)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -65,7 +63,7 @@ CREATE TABLE Playlists (
     playlistName varchar(50) NOT NULL,
     playlistDescription varchar(50) NOT NULL,
     userId int(11) NOT NULL,
-    numberOfSongs int(11) NOT NULL,
+    numberOfSongs int(11) NOT NULL DEFAULT 0,
     PRIMARY KEY (playlistId),
     CONSTRAINT FOREIGN KEY (userId) REFERENCES Users(userId)
         ON UPDATE CASCADE
@@ -81,6 +79,7 @@ CREATE TABLE Songs (
     artistId int(11) NOT NULL,
     genre varchar(50) NOT NULL,
     songLength time NOT NULL,
+    totalStreams int(11) NOT NULL DEFAULT 0,
     PRIMARY KEY (songId),
     CONSTRAINT FOREIGN KEY (albumId) REFERENCES Albums (albumId)
         ON UPDATE CASCADE
@@ -107,13 +106,13 @@ CREATE TABLE LikedSongs (
 -- Users table which contains company user base
 CREATE TABLE Users (
     userId int(11) NOT NULL AUTO_INCREMENT,
-    fname varchar(50) NOT NULL,
-    lname varchar(50) NOT NULL,
-    email varchar(50) NOT NULL,
-    DOB date NOT NULL,
-    subscriptionType varchar(50) NOT NULL,
+    fName varchar(50) NOT NULL,
+    lName varchar(50) NOT NULL,
+    email varchar(50) NOT NULL UNIQUE,
+    dob date NOT NULL,
+    subscriptionId int(11) NOT NULL,
     PRIMARY KEY (userId),
-    CONSTRAINT FOREIGN KEY (subscriptionType) REFERENCES Subscriptions (subscriptionType)
+    CONSTRAINT FOREIGN KEY (subscriptionId) REFERENCES Subscriptions (subscriptionId)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -124,8 +123,8 @@ CREATE TABLE Albums (
     albumName varchar(50) NOT NULL,
     recordStudio varchar(50) NOT NULL,
     yearReleased int(11) NOT NULL,
-    numberOfSongs int(11) NOT NULL,
     artistId int(11) NOT NULL,
+    numberOfSongs int(11) NOT NULL DEFAULT 0,
     PRIMARY KEY (albumId),
     CONSTRAINT FOREIGN KEY (artistId) REFERENCES Artists (artistId)
         ON UPDATE CASCADE
@@ -134,11 +133,11 @@ CREATE TABLE Albums (
 
 -- Subscriptions table handles types of plans user base is subscribed to
 CREATE TABLE Subscriptions (
-    subscriptionType varchar(50) NOT NULL UNIQUE,
-    subscriptionDescription varchar(50) NOT NULL,
+    subscriptionId int(11) NOT NULL AUTO_INCREMENT,
+    subscriptionDescription varchar(50) NOT NULL UNIQUE,
     price decimal(10,2) NOT NULL,
-    numberOfSubscriptions int(11),
-    PRIMARY KEY (subscriptionType)
+    numberOfSubscriptions int(11) DEFAULT 0,
+    PRIMARY KEY (subscriptionId)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Enable commit and foreign key checks to catch errors
