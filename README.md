@@ -24,6 +24,6 @@ Streamify’s subscription service currently generates $10 million per year from
 
 **queryTable.sql:** Performs select all on all tables to review tables.
 
-Schema:
+# Schema
 <img src="blob:chrome-untrusted://media-app/8c990ea4-3f8f-4c0e-ab01-a9465b98e177" alt="MusicSchema_Team34_v2.drawio.png"/>![image](https://github.com/user-attachments/assets/f0c240f2-12d2-45be-ad4d-f0dde0e26067)
 
