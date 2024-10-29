@@ -23,12 +23,7 @@ CREATE TABLE AddedSongs (
     addedSongsId int(11) NOT NULL AUTO_INCREMENT,
     playlistId int(11) NOT NULL,
     songId int(11) NOT NULL,
-    -- PRI: Primary key (unique and not null)
     PRIMARY KEY (addedSongsId),
-    -- Below here connects Playlists and Songs tables to AddedSongs table
-    -- MUL: The column has a non-unique index, meaning it can contain duplicate values, but it's indexed for faster searches.
-    -- KEY: Lists attribute as a key to be used as an index for foreign key matching
-    -- Constraints maintain foreign key relationships
     CONSTRAINT FOREIGN KEY (playlistId) REFERENCES Playlists (playlistId)
         -- ON UPDATE CASCADE updated value and updates table
         ON UPDATE CASCADE
@@ -100,11 +95,6 @@ CREATE TABLE LikedSongs (
     songId int(11) NOT NULL,
     userId int(11) NOT NULL,
     PRIMARY KEY (linkedSongsId),
-    -- Below here connects Songs and Users tables to LikedSongs table
-    -- KEY: Determines foreign key in table
-    -- KEY (songId),
-    -- CONSTRAINT: identifier
-    -- FOREIGN KEY: attribute which is foreign key
     CONSTRAINT FOREIGN KEY (songId) REFERENCES Songs (songId)
         ON UPDATE CASCADE
         ON DELETE RESTRICT,
