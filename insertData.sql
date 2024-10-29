@@ -223,6 +223,23 @@ INSERT INTO AddedSongs (
     ( SELECT songId from Songs WHERE songName = 'Fortnight' )
 );
 
+INSERT INTO LikedSongs (
+    songId,
+    userId
+) VALUES(
+    (SELECT songId from Songs WHERE songName = 'Gravity'),
+    (SELECT userId from Users WHERE fName = 'Aaron' AND lName = 'Martinez')
+),
+(
+    (SELECT songId from Songs WHERE songName = 'Drive'),
+    (SELECT userId from Users WHERE fName = 'Elizabeth' AND lName = 'Hoved')
+),
+(
+    (SELECT songId from Songs WHERE songName = 'Redbone'),
+    (SELECT userId from Users WHERE fName = 'Elon' AND lName = 'Musk')
+);
+
+
 INSERT INTO Collaborations (
     songId,
     artistId
