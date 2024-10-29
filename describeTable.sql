@@ -1,0 +1,9 @@
+describe AddedSongs;
+describe Albums;
+describe Artists;
+describe Collaborations;
+describe LikedSongs;
+describe Playlists;
+describe Songs;
+describe Subscriptions;
+describe Users;
