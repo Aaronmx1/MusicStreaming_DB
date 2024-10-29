@@ -150,16 +150,16 @@ INSERT INTO Users (
     dob,
     subscriptionId
 ) VALUES (
-    'Tim',
-    'Newell',
-    'tnewell@gmail.com',
-    '2023-03-04',
-    ( SELECT subscriptionId from Subscriptions WHERE subscriptionDescription = 'Premium Individual' )
-),
-(
     'Aaron',
     'Martinez',
     'amartinez@gmail.com',
+    '2023-05-06',
+    ( SELECT subscriptionId from Subscriptions WHERE subscriptionDescription = 'Premium Individual' )
+),
+(
+    'Elizabeth',
+    'Hoved',
+    'ehoved@gmail.com',
     '2023-05-06',
     ( SELECT subscriptionId from Subscriptions WHERE subscriptionDescription = 'Premium Family' )
 ),
@@ -179,7 +179,7 @@ INSERT INTO Playlists (
 ) VALUES (
     'Good Songs',
     'Some good songs that I like',
-    ( SELECT userId from Users WHERE email = 'tnewell@gmail.com' ),
+    ( SELECT userId from Users WHERE email = 'amartinez@gmail.com' ),
     4
 ),
 (
@@ -191,7 +191,7 @@ INSERT INTO Playlists (
 (
     'Other songs',
     'Various Songs',
-    ( SELECT userId from Users WHERE email = 'amartinez@gmail.com' ),
+    ( SELECT userId from Users WHERE email = 'ehoved@gmail.com' ),
     3
 );
 
