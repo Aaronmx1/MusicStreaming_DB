@@ -1,5 +1,6 @@
 # MusicStreaming_DB
 Music Streaming backend
+(Currently under development - Est. Dec-2024 completion)
 
 Streamify Music Streaming Service/Database
 
