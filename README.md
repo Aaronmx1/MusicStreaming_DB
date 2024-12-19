@@ -1,3 +1,5 @@
+**OLD REPO, SEE UPDATED:** https://github.com/Aaronmx1/Streamify-FlaskApp
+
 # MusicStreaming_DB
 Music Streaming backend
 (Currently under development - Est. Dec-2024 completion)
